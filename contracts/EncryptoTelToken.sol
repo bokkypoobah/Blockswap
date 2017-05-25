@@ -20,6 +20,7 @@ contract TokenConfig {
     uint256 _totalSupply = 5436479500000000;
 }
 
+
 // ----------------------------------------------------------------------------
 // ERC Token Standard #20 Interface
 // https://github.com/ethereum/EIPs/issues/20
