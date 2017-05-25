@@ -1,5 +1,10 @@
 # EncryptoTel Token Audit (Work-in-Progress)
 
+EncryptoTel has recently had a [crowdsale](http://ico.encryptotel.com/) between Apr 24 2017 and May 31 2017. 
+This crowdsale raised over USD 4,429,211.94 consisting of BTC 851.84, ETH 3,742.16, WAVES 2,071,053.30, ETC 5,944.01 .
+
+The EncryptoTel token ETT will be a dual Waves and Ethereum blockchain token.
+
 <br />
 
 <hr />
@@ -17,9 +22,6 @@
 <hr />
 
 ## Background And History
-* Apr 24 2017 Michael C agreed for the unnecessary `mintToken(...)`, `freezeAccount(...)`, `approveAndCall(...)`, `buy()`, `sell(...)` and `setPrices(...)` functions to be removed.
-* May 08 2017 Bok Consulting completed (almost) the changes to [contracts/RAREToken.sol](contracts/RAREToken.sol) and the test script [test/01_test1.sh](test/01_test1.sh) with the generated result documented in [test/test1results.txt](test/test1results.txt)
-* May 09 2017 Bok Consulting completed this security audit report
 
 <br />
 
@@ -28,8 +30,14 @@
 ## Security Overview Of The EncryptoTelToken Contract
 * [x] The smart contract has been kept relatively simple
 * [x] The code has been tested for the normal use cases, and around the boundary cases
-* [x] The testing has been done using geth 1.5.9-stable and solc 0.4.9+commit.364da425.Darwin.appleclang instead of one of the testing frameworks and JavaScript VMs to simulate the live environment as closely as possible
-* [x] The `approveAndCall(...)` function has been removed as the side effects of this function has not been evaluated fully
+  * [x] Deployment, with correct symbol, name, decimals and totalSupply
+  * [x] Block for ethers being sent to this contract
+  * [x] `transfer(...)` from one account to another
+  * [x] `approve(...)` and `transferFrom(...)` from one account to another
+  * [x] `transferOwnership(...)` and `acceptOwnership()` of the token contract
+  * [x] `moveToWaves(...)` with the Waves address where the `WavesTransfer(...)` event is logged
+* [x] The testing has been done using geth v1.6.1-stable-021c3c28/darwin-amd64/go1.8.1 and solc 0.4.11+commit.68ef5810.Darwin.appleclang instead of one of the testing frameworks and JavaScript VMs to simulate the live environment as closely as possible
+* [x] The `approveAndCall(...)` function has been omitted from this token smart contract as the side effects of this function has not been evaluated fully
 * [x] There is no logic with potential division by zero errors
 * [x] All numbers used are uint256 (with the exception of `decimals`), reducing the risk of errors from type conversions
 * [x] Areas with potential overflow errors in `transfer(...)` and `transferFrom(...)` have the logic to prevent overflows

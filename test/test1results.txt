@@ -1,5 +1,5 @@
  # Account                                             EtherBalanceChange                          Token Name
- 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       15.000000000000000000            0 Account #0 - Miner
+ 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.000000000000000000            0 Account #0 - Miner
  2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000            0 Account #1 - Token Owner
  3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000            0 Account #2
  4 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000            0 Account #3
@@ -8,10 +8,10 @@
  7 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000            0 Account #6
 
 Test 1.1 Deploy Token Contract
-tokenAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688 gas=4000000 gasUsed=830498 costETH=0.01660996 costUSD=2.112786912 @ ETH/USD=127.2 gasPrice=20000000000 block=5 txId=0xd20c2b04811e24b9979a62770722051473255f2e115a223ed8d279983b63d18b
+tokenAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688 gas=4000000 gasUsed=823975 costETH=0.0164795 costUSD=2.0961924 @ ETH/USD=127.2 gasPrice=20000000000 block=2 txId=0x0d226bcf55d1cb0167c61c816e65cc91a213ef505acb70c1adddae899cbd1768
  # Account                                             EtherBalanceChange                          Token Name
- 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       25.016609960000000000           0.00000000 Account #0 - Miner
- 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.016609960000000000    54364795.00000000 Account #1 - Token Owner
+ 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       10.016479500000000000           0.00000000 Account #0 - Miner
+ 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.016479500000000000    54364795.00000000 Account #1 - Token Owner
  3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.00000000 Account #2
  4 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.00000000 Account #3
  5 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.00000000 Account #4
@@ -28,8 +28,8 @@ token.newOwner=0x0000000000000000000000000000000000000000
 
 Test 1.2 Attempt to send ethers to the token contract - expecting to fail
  # Account                                             EtherBalanceChange                          Token Name
- 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       40.024609960000000000           0.00000000 Account #0 - Miner
- 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.016609960000000000    54364795.00000000 Account #1 - Token Owner
+ 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       20.024479500000000000           0.00000000 Account #0 - Miner
+ 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.016479500000000000    54364795.00000000 Account #1 - Token Owner
  3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.008000000000000000           0.00000000 Account #2
  4 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.00000000 Account #3
  5 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.00000000 Account #4
@@ -43,8 +43,8 @@ token.newOwner=0x0000000000000000000000000000000000000000
 
 Test 1.3 Token owner transfer 10,000 tokens to account2 and account3
  # Account                                             EtherBalanceChange                          Token Name
- 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       50.026652520000000000           0.00000000 Account #0 - Miner
- 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.018652520000000000    54344795.00000000 Account #1 - Token Owner
+ 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       35.026522940000000000           0.00000000 Account #0 - Miner
+ 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.018522940000000000    54344795.00000000 Account #1 - Token Owner
  3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.008000000000000000       10000.00000000 Account #2
  4 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000       10000.00000000 Account #3
  5 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.00000000 Account #4
@@ -56,14 +56,14 @@ PASS Test 1.3 Token owner transfer 10,000 tokens to account2 and account3 - acco
 token.totalSupply=54364795
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
-Transfer Event 0: from=0xa11aae29840fbb5c86e6fd4cf809eba183aef433 to=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 value=10000 block=10
-Transfer Event 1: from=0xa11aae29840fbb5c86e6fd4cf809eba183aef433 to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 value=10000 block=10
+Transfer Event 0: from=0xa11aae29840fbb5c86e6fd4cf809eba183aef433 to=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 value=10000 block=7
+Transfer Event 1: from=0xa11aae29840fbb5c86e6fd4cf809eba183aef433 to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 value=10000 block=7
 
 Test 1.4 Account2 transfers 50,000 tokens to account4 - expecting to fail without errors
  # Account                                             EtherBalanceChange                          Token Name
- 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.027128920000000000           0.00000000 Account #0 - Miner
- 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.018652520000000000    54344795.00000000 Account #1 - Token Owner
- 3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.008476400000000000       10000.00000000 Account #2
+ 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       45.026999780000000000           0.00000000 Account #0 - Miner
+ 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.018522940000000000    54344795.00000000 Account #1 - Token Owner
+ 3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.008476840000000000       10000.00000000 Account #2
  4 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000       10000.00000000 Account #3
  5 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.00000000 Account #4
  6 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.00000000 Account #5
@@ -76,9 +76,9 @@ token.newOwner=0x0000000000000000000000000000000000000000
 
 Test 1.5 Account2 approves transfer of 2,000 tokens to account3 and account3 transfers
  # Account                                             EtherBalanceChange                          Token Name
- 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       85.028591760000000000           0.00000000 Account #0 - Miner
- 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.018652520000000000    54344795.00000000 Account #1 - Token Owner
- 3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.009383200000000000        8000.00000000 Account #2
+ 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       70.028462620000000000           0.00000000 Account #0 - Miner
+ 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.018522940000000000    54344795.00000000 Account #1 - Token Owner
+ 3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.009383640000000000        8000.00000000 Account #2
  4 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0       -0.000556040000000000       12000.00000000 Account #3
  5 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.00000000 Account #4
  6 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.00000000 Account #5
@@ -89,16 +89,16 @@ PASS Test 1.5 Account2 approves transfer of 2,000 tokens to account3 and account
 token.totalSupply=54364795
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
-Approval Event 0: owner=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 spender=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 2000 block=15
-Transfer Event 0: from=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 value=2000 block=17
+Approval Event 0: owner=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 spender=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 2000 block=12
+Transfer Event 0: from=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 value=2000 block=14
 
 Test 1.6 Change Ownership
-tx1_6_1 gas=100000 gasUsed=43383 costETH=0.00086766 costUSD=0.110366352 @ ETH/USD=127.2 gasPrice=20000000000 block=20 txId=0x70a0b53505c77671dd1266c5655721099eeae7565d652722f4f5d9f37b6dbc49
-tx1_6_2 gas=100000 gasUsed=28503 costETH=0.00057006 costUSD=0.072511632 @ ETH/USD=127.2 gasPrice=20000000000 block=22 txId=0xf5622930ec91af48befb11d768330553afde352c942fd198ebc933e39b3f30f8
+tx1_6_1 gas=100000 gasUsed=43405 costETH=0.0008681 costUSD=0.11042232 @ ETH/USD=127.2 gasPrice=20000000000 block=16 txId=0x70a0b53505c77671dd1266c5655721099eeae7565d652722f4f5d9f37b6dbc49
+tx1_6_2 gas=100000 gasUsed=28500 costETH=0.00057 costUSD=0.072504 @ ETH/USD=127.2 gasPrice=20000000000 block=18 txId=0xf5622930ec91af48befb11d768330553afde352c942fd198ebc933e39b3f30f8
  # Account                                             EtherBalanceChange                          Token Name
- 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      110.029459420000000000           0.00000000 Account #0 - Miner
- 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.019520180000000000    54344795.00000000 Account #1 - Token Owner
- 3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.009383200000000000        8000.00000000 Account #2
+ 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       90.029330720000000000           0.00000000 Account #0 - Miner
+ 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.019391040000000000    54344795.00000000 Account #1 - Token Owner
+ 3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.009383640000000000        8000.00000000 Account #2
  4 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0       -0.000556040000000000       12000.00000000 Account #3
  5 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.00000000 Account #4
  6 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.00000000 Account #5
@@ -109,13 +109,13 @@ PASS Test 1.6 Change Ownership - Accept ownership
 token.totalSupply=54364795
 token.owner=0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
 token.newOwner=0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
-OwnershipTransferred Event 0: from=0xa11aae29840fbb5c86e6fd4cf809eba183aef433 to=0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e 22
+OwnershipTransferred Event 0: from=0xa11aae29840fbb5c86e6fd4cf809eba183aef433 to=0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e 18
 
 Test 1.6 Account2 blockswaps to Waves account 3PBcRZBV38UBWQXmmnXNkVf7VZLBQgGZ9DM
  # Account                                             EtherBalanceChange                          Token Name
- 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      120.030571180000000000        2000.00000000 Account #0 - Miner
- 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.019520180000000000    54344795.00000000 Account #1 - Token Owner
- 3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.010494960000000000        6000.00000000 Account #2
+ 1 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      100.030442480000000000        2000.00000000 Account #0 - Miner
+ 2 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.019391040000000000    54344795.00000000 Account #1 - Token Owner
+ 3 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.010495400000000000        6000.00000000 Account #2
  4 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0       -0.000556040000000000       12000.00000000 Account #3
  5 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.00000000 Account #4
  6 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.00000000 Account #5
@@ -125,6 +125,6 @@ PASS Test 1.6 Account2 blockswaps to Waves account 3PBcRZBV38UBWQXmmnXNkVf7VZLBQ
 token.totalSupply=54364795
 token.owner=0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
 token.newOwner=0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
-WavesTransfer Event 0: from=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 wavesAddress=3PBcRZBV38UBWQXmmnXNkVf7VZLBQgGZ9DM amount=2000 block=24
-Transfer Event 0: from=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 to=0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e value=2000 block=24
+WavesTransfer Event 0: from=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 wavesAddress=3PBcRZBV38UBWQXmmnXNkVf7VZLBQgGZ9DM amount=2000 block=20
+Transfer Event 0: from=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976 to=0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e value=2000 block=20
 

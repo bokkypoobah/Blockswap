@@ -17,7 +17,7 @@ contract TokenConfig {
     string public constant symbol = "ETT";
     string public constant name = "EncyptoTel Token";
     uint8 public constant decimals = 8;  // 8 decimals, same as tokens on Waves
-    uint256 _totalSupply = 5436479500000000;
+    uint256 public constant TOTALSUPPLY = 5436479500000000;
 }
 
 
@@ -104,8 +104,8 @@ contract EncryptoTelToken is TokenConfig, WavesEthereumSwap {
     // Constructor
     // ------------------------------------------------------------------------
     function EncryptoTelToken() Owned() TokenConfig() {
-        totalSupply = _totalSupply;
-        balances[owner] = _totalSupply;
+        totalSupply = TOTALSUPPLY;
+        balances[owner] = TOTALSUPPLY;
     }
 
     // ------------------------------------------------------------------------
