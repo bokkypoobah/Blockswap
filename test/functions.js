@@ -53,8 +53,6 @@ function addTokenContractAddressAndAbi(address, abi) {
 // Account ETH and token balances
 // -----------------------------------------------------------------------------
 function printBalances() {
-  console.log("DEBUG: tokenContractAddress: " + tokenContractAddress);
-  console.log("DEBUG: tokenContractAbi: " + tokenContractAbi);
   var token = tokenContractAddress == null || tokenContractAbi == null ? null : web3.eth.contract(tokenContractAbi).at(tokenContractAddress);
   var decimals = token == null ? 0 : token.decimals();
   var i = 0;
@@ -200,8 +198,8 @@ function printTokenContractDynamicDetails() {
     var wavesTransferEvent = contract.WavesTransfer({}, { fromBlock: dynamicDetailsFromBlock, toBlock: latestBlock });
     i = 0;
     wavesTransferEvent.watch(function (error, result) {
-      console.log("RESULT: WavesTransfer Event " + i++ + ": from=" + result.args._from + " wavesAddress=" + wavesAddress +
-        " amount=" + result.args._amount.shift(-decimals) + " block="+ result.blockNumber);
+      console.log("RESULT: WavesTransfer Event " + i++ + ": from=" + result.args._from + " wavesAddress=" + result.args.wavesAddress +
+        " amount=" + result.args.amount.shift(-decimals) + " block="+ result.blockNumber);
     });
     wavesTransferEvent.stopWatching();
 
@@ -216,8 +214,8 @@ function printTokenContractDynamicDetails() {
     var transferEvent = contract.Transfer({}, { fromBlock: dynamicDetailsFromBlock, toBlock: latestBlock });
     i = 0;
     transferEvent.watch(function (error, result) {
-      console.log("RESULT: Transfer Event " + i++ + ": from=" + result.args.from + " to=" + result.args.to +
-        " value=" + result.args.value.shift(-decimals) + " block=" + result.blockNumber);
+      console.log("RESULT: Transfer Event " + i++ + ": from=" + result.args._from + " to=" + result.args._to +
+        " value=" + result.args._value.shift(-decimals) + " block=" + result.blockNumber);
     });
     transferEvent.stopWatching();
     dynamicDetailsFromBlock = latestBlock + 1;

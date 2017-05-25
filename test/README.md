@@ -30,4 +30,5 @@ Note that this recent testing only covers the EncryptoTel token
 
 ## Note
 
-I prefer to test the Ethereum smart contracts against the Mainnet clients, using a Dev blockchain. This is to reduce the effects of different behaviours when testing againts truffle or one of the other testing frameworks.
+These smart contract tests have been tested with the Mainnet `geth` client, using a Dev blockchain.
+This is to reduce the chances of any side effects from testing against Truffle or other testing frameworks.
