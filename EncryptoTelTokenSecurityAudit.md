@@ -1,5 +1,53 @@
-# EncryptoTel Token Audit
+# EncryptoTel Token Audit (Work-in-Progress)
 
+<br />
+
+<hr />
+
+**Table of contents**
+* [Background And History](#background-and-history)
+* [Security Overview Of The EncryptoTelToken Contract](#security-overview-of-the-raretoken-contract)
+  * [Other Notes](#other-notes)
+* [Comments On The Source Code](#comments-on-the-source-code)
+* [References](#references)
+
+
+<br />
+
+<hr />
+
+## Background And History
+* Apr 24 2017 Michael C agreed for the unnecessary `mintToken(...)`, `freezeAccount(...)`, `approveAndCall(...)`, `buy()`, `sell(...)` and `setPrices(...)` functions to be removed.
+* May 08 2017 Bok Consulting completed (almost) the changes to [contracts/RAREToken.sol](contracts/RAREToken.sol) and the test script [test/01_test1.sh](test/01_test1.sh) with the generated result documented in [test/test1results.txt](test/test1results.txt)
+* May 09 2017 Bok Consulting completed this security audit report
+
+<br />
+
+<hr />
+
+## Security Overview Of The EncryptoTelToken Contract
+* [x] The smart contract has been kept relatively simple
+* [x] The code has been tested for the normal use cases, and around the boundary cases
+* [x] The testing has been done using geth 1.5.9-stable and solc 0.4.9+commit.364da425.Darwin.appleclang instead of one of the testing frameworks and JavaScript VMs to simulate the live environment as closely as possible
+* [x] The `approveAndCall(...)` function has been removed as the side effects of this function has not been evaluated fully
+* [x] There is no logic with potential division by zero errors
+* [x] All numbers used are uint256 (with the exception of `decimals`), reducing the risk of errors from type conversions
+* [x] Areas with potential overflow errors in `transfer(...)` and `transferFrom(...)` have the logic to prevent overflows
+* [x] Areas with potential underflow errors in `transfer(...)` and `transferFrom(...)` have the logic to prevent underflows
+* [x] Function and event names are differentiated by case - function names begin with a lowercase character and event names begin with an uppercase character
+
+### Other Notes
+
+
+<br />
+
+<hr />
+
+## Comments On The Source Code
+
+My comments in the following code are market in the lines beginning with `// NOTE: `
+
+Following is the source code for [contracts/EncryptoTelToken.sol](https://github.com/bokkypoobah/Blockswap/blob/ad80951a2187fc883777a22d399b8c77bd5db90c/contracts/EncryptoTelToken.sol): 
 
 ```javascript
 pragma solidity ^0.4.10;
@@ -204,3 +252,16 @@ contract EncryptoTelToken is TokenConfig, WavesEthereumSwap {
     }
 }
 ```
+
+<br />
+
+<hr />
+
+## References
+
+* [Ethereum Contract Security Techniques and Tips](https://github.com/ConsenSys/smart-contract-best-practices)
+* Solidity [bugs.json](https://github.com/ethereum/solidity/blob/develop/docs/bugs.json) and [bugs_by_version.json](https://github.com/ethereum/solidity/blob/develop/docs/bugs_by_version.json).
+
+<br />
+
+(c) BokkyPooBah / Bok Consulting Pty Ltd - May 09 2017
