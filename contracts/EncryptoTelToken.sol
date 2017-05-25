@@ -70,10 +70,24 @@ contract Owned {
 
 
 // ----------------------------------------------------------------------------
+// WavesEthereumSwap functionality
+// ----------------------------------------------------------------------------
+contract WavesEthereumSwap is Owned, ERC20Interface {
+    event WavesTransfer(address indexed _from, string wavesAddress,
+        uint256 amount);
+
+    function moveToWaves(string wavesAddress, uint256 amount) {
+        if (!transfer(owner, amount)) throw;
+        WavesTransfer(msg.sender, wavesAddress, amount);
+    }
+}
+
+
+// ----------------------------------------------------------------------------
 // ERC Token Standard #20 Interface
 // https://github.com/ethereum/EIPs/issues/20
 // ----------------------------------------------------------------------------
-contract EncryptoTelToken is TokenConfig, Owned, ERC20Interface {
+contract EncryptoTelToken is TokenConfig, WavesEthereumSwap {
 
     // ------------------------------------------------------------------------
     // Balances for each account
@@ -89,7 +103,8 @@ contract EncryptoTelToken is TokenConfig, Owned, ERC20Interface {
     // Constructor
     // ------------------------------------------------------------------------
     function EncryptoTelToken() Owned() TokenConfig() {
-        balances[owner] = totalSupply;
+        totalSupply = _totalSupply;
+        balances[owner] = _totalSupply;
     }
 
     // ------------------------------------------------------------------------
@@ -165,18 +180,20 @@ contract EncryptoTelToken is TokenConfig, Owned, ERC20Interface {
     ) constant returns (uint256 remaining) {
         return allowed[_owner][_spender];
     }
-}
 
-
-// ----------------------------------------------------------------------------
-// WavesEthereumSwap functionality
-// ----------------------------------------------------------------------------
-contract WavesEthereumSwap is EncryptoTelToken {
-    event WavesTransfer(address indexed _from, string wavesAddress,
-        uint256 amount);
-
-    function moveToWaves(string wavesAddress, uint256 amount) {
-        if (!transfer(owner, amount)) throw;
-        WavesTransfer(msg.sender, wavesAddress, amount);
+    // ------------------------------------------------------------------------
+    // Transfer out any accidentally sent ERC20 tokens
+    // ------------------------------------------------------------------------
+    function transferAnyERC20Token(address tokenAddress, uint256 amount) 
+        onlyOwner returns (bool success) 
+    {
+        return ERC20Interface(tokenAddress).transfer(owner, amount);
+    }
+    
+    // ------------------------------------------------------------------------
+    // Don't accept ethers
+    // ------------------------------------------------------------------------
+    function () {
+        throw;
     }
 }
