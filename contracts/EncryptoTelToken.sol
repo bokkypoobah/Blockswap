@@ -118,7 +118,10 @@ contract EncryptoTelToken is TokenConfig, WavesEthereumSwap {
     // ------------------------------------------------------------------------
     // Transfer the balance from owner's account to another account
     // ------------------------------------------------------------------------
-    function transfer(address _to, uint256 _amount) returns (bool success) {
+    function transfer(
+        address _to, 
+        uint256 _amount
+    ) returns (bool success) {
         if (balances[msg.sender] >= _amount             // User has balance
             && _amount > 0                              // Non-zero transfer
             && balances[_to] + _amount > balances[_to]  // Overflow check
