@@ -30,7 +30,7 @@ The EncryptoTel token ETT will be a dual Waves and Ethereum blockchain token.
 ## Security Overview Of The EncryptoTelToken Contract
 * [x] The smart contract has been kept relatively simple
 * [x] The code has been tested for the normal use cases, and around the boundary cases
-  * [x] Deployment, with correct symbol, name, decimals and totalSupply
+  * [x] Deployment, with correct `symbol()`, `name()`, `decimals()` and `totalSupply()`
   * [x] Block for ethers being sent to this contract
   * [x] `transfer(...)` from one account to another
   * [x] `approve(...)` and `transferFrom(...)` from one account to another
@@ -77,7 +77,7 @@ contract TokenConfig {
     string public constant symbol = "ETT";
     string public constant name = "EncyptoTel Token";
     uint8 public constant decimals = 8;  // 8 decimals, same as tokens on Waves
-    uint256 _totalSupply = 5436479500000000;
+    uint256 public constant TOTALSUPPLY = 5436479500000000;
 }
 
 
@@ -164,8 +164,8 @@ contract EncryptoTelToken is TokenConfig, WavesEthereumSwap {
     // Constructor
     // ------------------------------------------------------------------------
     function EncryptoTelToken() Owned() TokenConfig() {
-        totalSupply = _totalSupply;
-        balances[owner] = _totalSupply;
+        totalSupply = TOTALSUPPLY;
+        balances[owner] = TOTALSUPPLY;
     }
 
     // ------------------------------------------------------------------------
