@@ -1,4 +1,4 @@
-# EncryptoTel Token Audit (Work-in-Progress)
+# EncryptoTel Token Audit
 
 EncryptoTel has recently had a [crowdsale](http://ico.encryptotel.com/) between Apr 24 2017 and May 31 2017. 
 This crowdsale raised over USD 4,429,211.94 consisting of BTC 851.84, ETH 3,742.16, WAVES 2,071,053.30, ETC 5,944.01 .
@@ -11,11 +11,11 @@ The EncryptoTel token ETT will be a dual Waves and Ethereum blockchain token.
 
 **Table of contents**
 * [Background And History](#background-and-history)
-* [Security Overview Of The EncryptoTelToken Contract](#security-overview-of-the-raretoken-contract)
-  * [Other Notes](#other-notes)
-* [Comments On The Source Code](#comments-on-the-source-code)
+* [Security Overview Of The Smart Contract](#security-overview-of-the-smart-contract)
+  * [Risks](#risks)
+* * [Other Notes](#other-notes)
+  [Comments On The Source Code](#comments-on-the-source-code)
 * [References](#references)
-
 
 <br />
 
@@ -23,13 +23,15 @@ The EncryptoTel token ETT will be a dual Waves and Ethereum blockchain token.
 
 ## Background And History
 
+See description above.
+
 <br />
 
 <hr />
 
-## Security Overview Of The EncryptoTelToken Contract
+## Security Overview Of The Smart Contract
 * [x] The smart contract has been kept relatively simple
-* [x] The code has been tested for the normal use cases, and around the boundary cases
+* [x] The code has been tested for the normal [ERC20](https://github.com/ethereum/EIPs/issues/20) use cases, and around some of the boundary cases
   * [x] Deployment, with correct `symbol()`, `name()`, `decimals()` and `totalSupply()`
   * [x] Block for ethers being sent to this contract
   * [x] `transfer(...)` from one account to another
@@ -45,10 +47,23 @@ The EncryptoTel token ETT will be a dual Waves and Ethereum blockchain token.
 * [x] Function and event names are differentiated by case - function names begin with a lowercase character and event names begin with an uppercase character
 * [x] A default constructor has been added to reject any ethers being received by this smart contract
 * [x] The function `transferAnyERC20Token(...)` has been added in case the owner has to free any accidentally trapped ERC20 tokens
+* [x] The test results can be found in [test/test1results.txt](test/test1results.txt) for the results and [test/test1output.txt](test/test1output.txt) for the full output
+
+<br />
+
+### Risks
+
+* This token contract will not hold any ethers
+* In the case where a security vulnerability in this contract is discovered or exploited, a new token contract can be deployed to a new address with the correct(ed) balances transferred over from the old contract to the new contract
+
+<br />
+
+<hr />
 
 ### Other Notes
 
-* [ ] Remember to update TOTALSUPPLY to the finalised and reconciled ICO total supply
+* This token contract has been developed and self-security audited - independent checks should be conducted before deployment
+* Remember to update TOTALSUPPLY to the finalised and reconciled ICO total supply
 
 <br />
 
@@ -56,9 +71,9 @@ The EncryptoTel token ETT will be a dual Waves and Ethereum blockchain token.
 
 ## Comments On The Source Code
 
-My comments in the following code are market in the lines beginning with `// NOTE: `
+My comments in the following code are market in the lines beginning with `// NOTE: `. In this case there is nothing to note in the source code below.
 
-Following is the source code for [contracts/EncryptoTelToken.sol](https://github.com/bokkypoobah/Blockswap/blob/ad80951a2187fc883777a22d399b8c77bd5db90c/contracts/EncryptoTelToken.sol): 
+Following is the source code for [contracts/EncryptoTelToken.sol](https://github.com/bokkypoobah/Blockswap/blob/ca87455c4650e20cf44bb3e1a3a5378104b33921/contracts/EncryptoTelToken.sol): 
 
 ```javascript
 pragma solidity ^0.4.10;
@@ -181,7 +196,10 @@ contract EncryptoTelToken is TokenConfig, WavesEthereumSwap {
     // ------------------------------------------------------------------------
     // Transfer the balance from owner's account to another account
     // ------------------------------------------------------------------------
-    function transfer(address _to, uint256 _amount) returns (bool success) {
+    function transfer(
+        address _to, 
+        uint256 _amount
+    ) returns (bool success) {
         if (balances[msg.sender] >= _amount             // User has balance
             && _amount > 0                              // Non-zero transfer
             && balances[_to] + _amount > balances[_to]  // Overflow check
@@ -275,4 +293,4 @@ contract EncryptoTelToken is TokenConfig, WavesEthereumSwap {
 
 <br />
 
-(c) BokkyPooBah / Bok Consulting Pty Ltd - May 09 2017
+(c) BokkyPooBah / Bok Consulting Pty Ltd - May 27 2017
