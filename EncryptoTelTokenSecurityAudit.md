@@ -43,9 +43,12 @@ The EncryptoTel token ETT will be a dual Waves and Ethereum blockchain token.
 * [x] Areas with potential overflow errors in `transfer(...)` and `transferFrom(...)` have the logic to prevent overflows
 * [x] Areas with potential underflow errors in `transfer(...)` and `transferFrom(...)` have the logic to prevent underflows
 * [x] Function and event names are differentiated by case - function names begin with a lowercase character and event names begin with an uppercase character
+* [x] A default constructor has been added to reject any ethers being received by this smart contract
+* [x] The function `transferAnyERC20Token(...)` has been added in case the owner has to free any accidentally trapped ERC20 tokens
 
 ### Other Notes
 
+* [ ] Remember to update TOTALSUPPLY to the finalised and reconciled ICO total supply
 
 <br />
 
