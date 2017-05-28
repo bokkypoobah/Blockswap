@@ -55,6 +55,11 @@ See description above.
 
 * This token contract will not hold any ethers
 * In the case where a security vulnerability in this contract is discovered or exploited, a new token contract can be deployed to a new address with the correct(ed) balances transferred over from the old contract to the new contract
+* This token contract suffers from the same ERC20 double spend issue with the `approve(...)` and `transferFrom(...)` workflow, but this is a low risk exploit where:
+  * Account1 approves for account2 to spend `x`
+  * Account1 changes the approval limit to `y`. Account2 waits for the second approval transaction to be broadcasted and sends a `transferFrom(...)` to spend up to `x` before the second approval is mined
+  * Account2 spends up to `y` after the second approval is mined. Account2 can therefore spend up to `x` + `y`, instead of `x` or `y`
+  * To avoid this double spend, account1 has to set the approval limit to `0`, checking the `allowance(...)` and then setting the approval limit to `y` if account2 has not spent `x`
 
 <br />
 
