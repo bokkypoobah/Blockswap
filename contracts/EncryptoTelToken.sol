@@ -62,10 +62,9 @@ contract Owned {
     }
 
     function acceptOwnership() {
-        if (msg.sender == newOwner) {
-            OwnershipTransferred(owner, newOwner);
-            owner = newOwner;
-        }
+        if (msg.sender != newOwner) throw;
+        OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
     }
 }
 
